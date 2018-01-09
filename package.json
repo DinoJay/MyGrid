@@ -1,0 +1,80 @@
+{
+  "name": "react-webpack-babel",
+  "version": "0.0.2",
+  "description": "React Webpack Babel Starter Kit",
+  "main": "''",
+  "scripts": {
+    "build": "webpack --progress --profile --colors ",
+    "start": "webpack-dev-server --progress --profile --colors --inline --hot --port 8888"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alicoding/react-webpack-babel"
+  },
+  "keywords": [
+    "React",
+    "Webpack",
+    "Babel",
+    "Starter",
+    "template"
+  ],
+  "author": "Jan Maushagen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alicoding/react-webpack-babel/issues"
+  },
+  "homepage": "https://github.com/alicoding/react-webpack-babel#readme",
+  "dependencies": {
+    "d3": "^4.12.2",
+    "d3-measure-text": "0.0.2",
+    "jquery": "^3.1.0",
+    "lodash": "^4.17.4",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-hot-loader": "^3.1.3",
+    "react-visibility-sensor": "^3.11.0",
+    "scroll-into-view": "^1.9.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-syntax-do-expressions": "^6.13.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-do-expressions": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-runtime": "^6.23.0",
+    "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "^0.28.7",
+    "dsv-loader": "^2.0.0",
+    "eslint": "^4.12.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-prettier": "^2.4.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^7.0.1",
+    "eslint-plugin-standard": "^3.0.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "1.1.6",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.7.2",
+    "postcss-loader": "^2.0.9",
+    "prettier": "^1.9.2",
+    "prettier-eslint-cli": "^4.1.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "transform-loader": "^0.2.3",
+    "url-loader": "0.6.2",
+    "webpack": "^3.10.0",
+    "webpack-cleanup-plugin": "^0.5.1",
+    "webpack-dev-server": "^2.10.0"
+  }
+}
