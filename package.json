@@ -1,22 +1,18 @@
 {
-  "name": "react-webpack-babel",
+  "name": "mygrid",
   "version": "0.0.2",
-  "description": "React Webpack Babel Starter Kit",
+  "description": "react css grid component",
   "main": "''",
   "scripts": {
-    "build": "webpack --progress --profile --colors ",
     "start": "webpack-dev-server --progress --profile --colors --inline --hot --port 8888"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/alicoding/react-webpack-babel"
+    "url": "https://github.com/DinoJay/MyGrid"
   },
   "keywords": [
     "React",
-    "Webpack",
-    "Babel",
-    "Starter",
-    "template"
+    "css"
   ],
   "author": "Jan Maushagen",
   "license": "MIT",
