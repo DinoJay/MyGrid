@@ -88,7 +88,7 @@ class Grid extends Component {
             ...style,
             display: 'grid',
             height: '100%',
-            // gridAutoFlow: 'column dense',
+            gridAutoFlow: 'column dense',
             gridTemplateRows,
             gridTemplateColumns,
             gridGap: `${gap}%`
