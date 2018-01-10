@@ -19096,6 +19096,7 @@ function src__inherits(subClass, superClass) { if (typeof superClass !== "functi
 
 
 
+// import cx from './index.scss';
 
 // function getCol(n) {
 //   // return  (3 + (-1) ** n - 2 * n)/ 4 * 3;
@@ -19185,10 +19186,12 @@ var src_Grid = function (_Component) {
           'div',
           {
             style: _extends({}, style, {
+              display: 'grid',
+              height: '100%',
+              // gridAutoFlow: 'column dense',
               gridTemplateRows: gridTemplateRows,
               gridTemplateColumns: gridTemplateColumns,
-              gridGap: gap + '%',
-              display: 'grid'
+              gridGap: gap + '%'
             })
           },
           react_default.a.Children.map(children, function (comp, i) {
@@ -19233,6 +19236,7 @@ var src_Grid = function (_Component) {
 src_Grid.propTypes = {
   children: prop_types_default.a.node,
   height: prop_types_default.a.number,
+  clickHandler: prop_types_default.a.function,
   span: prop_types_default.a.number,
   selectedColSpan: prop_types_default.a.number,
   colWidth: prop_types_default.a.number,
@@ -19291,6 +19295,7 @@ var src_Item = function (_Component2) {
         'div',
         {
           style: {
+            overflow: 'hidden',
             gridColumn: col ? col + ' / span ' + colSpan : 'span ' + colSpan,
             gridRowEnd: 'span ' + rowSpan,
             opacity: visible || selected ? 1 : opacity

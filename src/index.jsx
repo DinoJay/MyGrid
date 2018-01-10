@@ -5,6 +5,7 @@ import VisibilitySensor from 'react-visibility-sensor';
 import PropTypes from 'prop-types';
 
 import { ScrollView, ScrollElement } from './ScrollView';
+// import cx from './index.scss';
 
 // function getCol(n) {
 //   // return  (3 + (-1) ** n - 2 * n)/ 4 * 3;
@@ -23,6 +24,7 @@ class Grid extends Component {
   static propTypes = {
     children: PropTypes.node,
     height: PropTypes.number,
+    clickHandler: PropTypes.function,
     span: PropTypes.number,
     selectedColSpan: PropTypes.number,
     colWidth: PropTypes.number,
@@ -84,10 +86,12 @@ class Grid extends Component {
         <div
           style={{
             ...style,
+            display: 'grid',
+            height: '100%',
+            // gridAutoFlow: 'column dense',
             gridTemplateRows,
             gridTemplateColumns,
-            gridGap: `${gap}%`,
-            display: 'grid'
+            gridGap: `${gap}%`
           }}
         >
           {React.Children.map(children, (comp, i) => {
@@ -169,6 +173,7 @@ class Item extends Component {
     return (
       <div
         style={{
+          overflow: 'hidden',
           gridColumn: col ? `${col} / span ${colSpan}` : `span ${colSpan}`,
           gridRowEnd: `span ${rowSpan}`,
           opacity: visible || selected ? 1 : opacity
