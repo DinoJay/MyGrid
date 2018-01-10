@@ -18907,37 +18907,21 @@ var src_Grid = function (_Component) {
   function Grid(props) {
     _classCallCheck(this, Grid);
 
-    var _this = _possibleConstructorReturn(this, (Grid.__proto__ || Object.getPrototypeOf(Grid)).call(this, props));
-
-    _this.scrollTo = function () {
-      return _this.__scrollTo__REACT_HOT_LOADER__.apply(_this, arguments);
-    };
-
-    _this.scrollTo = _this.scrollTo.bind(_this);
-    return _this;
+    return _possibleConstructorReturn(this, (Grid.__proto__ || Object.getPrototypeOf(Grid)).call(this, props));
+    // this.scrollTo = this.scrollTo.bind(this);
   }
 
-  _createClass(Grid, [{
-    key: '__scrollTo__REACT_HOT_LOADER__',
-    value: function __scrollTo__REACT_HOT_LOADER__() {
-      return this.__scrollTo__REACT_HOT_LOADER__.apply(this, arguments);
-    }
-  }, {
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate() {
-      var children = this.props.children;
+  // componentDidUpdate() {
+  //   const { children } = this.props;
+  //   const selectedIndex = children.findIndex(d => d.props.selected);
+  //   if (selectedIndex) this.scrollTo(selectedIndex);
+  // }
+  //
+  // // scrollTo = name => {
+  //   this._scroller.scrollTo(name);
+  // };
 
-      var selectedIndex = children.findIndex(function (d) {
-        return d.props.selected;
-      });
-      if (selectedIndex) this.scrollTo(selectedIndex);
-    }
-  }, {
-    key: '__scrollTo__REACT_HOT_LOADER__',
-    value: function __scrollTo__REACT_HOT_LOADER__(name) {
-      this._scroller.scrollTo(name);
-    }
-  }, {
+  _createClass(Grid, [{
     key: 'render',
     value: function render() {
       var _props = this.props,

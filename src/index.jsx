@@ -36,18 +36,18 @@ class Grid extends Component {
 
   constructor(props) {
     super(props);
-    this.scrollTo = this.scrollTo.bind(this);
+    // this.scrollTo = this.scrollTo.bind(this);
   }
 
-  componentDidUpdate() {
-    const { children } = this.props;
-    const selectedIndex = children.findIndex(d => d.props.selected);
-    if (selectedIndex) this.scrollTo(selectedIndex);
-  }
-
-  scrollTo = name => {
-    this._scroller.scrollTo(name);
-  };
+  // componentDidUpdate() {
+  //   const { children } = this.props;
+  //   const selectedIndex = children.findIndex(d => d.props.selected);
+  //   if (selectedIndex) this.scrollTo(selectedIndex);
+  // }
+  //
+  // // scrollTo = name => {
+  //   this._scroller.scrollTo(name);
+  // };
 
   render() {
     const {
