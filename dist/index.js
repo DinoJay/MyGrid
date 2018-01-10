@@ -19273,7 +19273,6 @@ var src_Item = function (_Component2) {
           colSpan = _props2.colSpan,
           rowSpan = _props2.rowSpan,
           col = _props2.col,
-          clickHandler = _props2.clickHandler,
           selected = _props2.selected;
 
 
@@ -19284,9 +19283,6 @@ var src_Item = function (_Component2) {
             overflow: 'hidden',
             gridColumn: col ? col + ' / span ' + colSpan : 'span ' + colSpan,
             gridRowEnd: 'span ' + rowSpan
-          },
-          onClick: function onClick() {
-            return clickHandler(children.props.id);
           }
         },
         children

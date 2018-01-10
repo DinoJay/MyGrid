@@ -154,7 +154,7 @@ class Item extends Component {
       colSpan,
       rowSpan,
       col,
-      clickHandler,
+      // clickHandler,
       selected
     } = this.props;
 
@@ -165,7 +165,6 @@ class Item extends Component {
           gridColumn: col ? `${col} / span ${colSpan}` : `span ${colSpan}`,
           gridRowEnd: `span ${rowSpan}`
         }}
-        onClick={() => clickHandler(children.props.id)}
       >
         {children}
       </div>
