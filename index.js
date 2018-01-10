@@ -1,4 +1,9 @@
+Object.defineProperty(exports, '__esModule', { value: true });
+
 // import Grid from './dist';
+
+const Grid = require('./dist/index.js');
+exports.default = Grid;
 // import React from 'react';
 // import ReactDOM from 'react-dom';
 //
@@ -26,5 +31,5 @@
 // }
 // export default Grid;
 
-module.exports = require('./dist/index.js');
+// module.exports = require('./dist/index.js');
 
