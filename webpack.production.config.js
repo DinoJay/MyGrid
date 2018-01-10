@@ -32,7 +32,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 // });
 //
 module.exports = {
-  entry: ['./index.js'],
+  entry: ['./src/index.jsx'],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'index.js'
@@ -52,14 +52,14 @@ module.exports = {
       }
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-        screw_ie8: true,
-        drop_console: true,
-        drop_debugger: true
-      }
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false,
+    //     screw_ie8: true,
+    //     drop_console: true,
+    //     drop_debugger: true
+    //   }
+    // }),
     new ExtractTextPlugin('[contenthash].css', {
       allChunks: true
     })
