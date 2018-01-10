@@ -1,37 +1,41 @@
-
 const webpack = require('webpack');
 const path = require('path');
 const loaders = require('./webpack.loaders');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-// local css modules
-loaders.push({
-  test: /[\/\\]src[\/\\].*\.css/,
-  exclude: /(node_modules|bower_components|public)/,
-  loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
-});
-
-// local scss modules
-loaders.push({
-  test: /[\/\\]src[\/\\].*\.scss/,
-  exclude: /(node_modules|bower_components|public)/,
-  loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass')
-});
-// global css files
-loaders.push({
-  test: /[\/\\](node_modules|global)[\/\\].*\.css$/,
-  loader: ExtractTextPlugin.extract('style', 'css')
-});
-
+// // local css modules
+// loaders.push({
+//   test: /[\/\\]src[\/\\].*\.css/,
+//   exclude: /(node_modules|bower_components|public)/,
+//   loader: ExtractTextPlugin.extract(
+//     'style',
+//     'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+//   )
+// });
+//
+// // local scss modules
+// loaders.push({
+//   test: /[\/\\]src[\/\\].*\.scss/,
+//   exclude: /(node_modules|bower_components|public)/,
+//   loader: ExtractTextPlugin.extract(
+//     'style',
+//     'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass'
+//   )
+// });
+// // global css files
+// loaders.push({
+//   test: /[\/\\](node_modules|global)[\/\\].*\.css$/,
+//   loader: ExtractTextPlugin.extract('style', 'css')
+// });
+//
 module.exports = {
-  entry: [
-    './src/index.jsx'
-  ],
+  entry: ['./index.js'],
   output: {
-    path: path.join(__dirname, 'public'),
-    filename: '[chunkhash].js'
+    path: path.join(__dirname, 'dist'),
+    filename: 'index.js'
   },
   resolve: {
     extensions: ['.js', '.jsx']
@@ -40,12 +44,14 @@ module.exports = {
     loaders
   },
   plugins: [
+    new CleanWebpackPlugin(['dist']),
     new WebpackCleanupPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'
       }
     }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
@@ -54,14 +60,12 @@ module.exports = {
         drop_debugger: true
       }
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
     new ExtractTextPlugin('[contenthash].css', {
       allChunks: true
-    }),
-    new HtmlWebpackPlugin({
-      template: './src/template.html',
-      title: 'Webpack App'
-    }),
-    new webpack.optimize.DedupePlugin()
+    })
+    // new HtmlWebpackPlugin({
+    //   template: './src/template.html',
+    //   title: 'Webpack App'
+    // }),
   ]
 };

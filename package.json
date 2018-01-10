@@ -4,7 +4,8 @@
   "description": "react css grid component",
   "main": "''",
   "scripts": {
-    "start": "webpack-dev-server --progress --profile --colors --inline --hot --port 8888"
+    "start": "webpack-dev-server --progress --profile --colors --inline --hot --port 8888",
+    "build": "webpack --config ./webpack.production.config.js --progress"
   },
   "repository": {
     "type": "git",
