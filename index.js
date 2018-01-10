@@ -1,4 +1,4 @@
-import Grid from './dist';
+// import Grid from './dist';
 // import React from 'react';
 // import ReactDOM from 'react-dom';
 //
@@ -24,4 +24,7 @@ import Grid from './dist';
 //     render(App);
 //   });
 // }
-export default Grid;
+// export default Grid;
+
+module.exports = require('./dist/index.js');
+
