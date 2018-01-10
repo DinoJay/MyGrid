@@ -61,7 +61,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -72,7 +72,7 @@ module.exports =
 
 
 if (true) {
-  module.exports = __webpack_require__(9);
+  module.exports = __webpack_require__(8);
 } else {
   module.exports = require('./cjs/react.development.js');
 }
@@ -279,51 +279,6 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-function checkDCE() {
-  /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
-  if (
-    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' ||
-    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function'
-  ) {
-    return;
-  }
-  if (false) {
-    // This branch is unreachable because this function is only called
-    // in production, but the condition is true only in development.
-    // Therefore if the branch is still here, dead code elimination wasn't
-    // properly applied.
-    // Don't change the message. React DevTools relies on it. Also make sure
-    // this message doesn't occur elsewhere in this function, or it will cause
-    // a false positive.
-    throw new Error('^_^');
-  }
-  try {
-    // Verify that the code above has been dead code eliminated (DCE'd).
-    __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);
-  } catch (err) {
-    // DevTools shouldn't crash React, no matter what.
-    // We should still report in case we break this code.
-    console.error(err);
-  }
-}
-
-if (true) {
-  // DCE check should happen before ReactDOM bundle executes so that
-  // DevTools can report bad minification during injection.
-  checkDCE();
-  module.exports = __webpack_require__(11);
-} else {
-  module.exports = require('./cjs/react-dom.development.js');
-}
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -379,14 +334,14 @@ function invariant(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(8);
+module.exports = __webpack_require__(7);
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18906,22 +18861,16 @@ function defaultConstrain(transform, extent, translateExtent) {
 
 
 // EXTERNAL MODULE: ./node_modules/react-visibility-sensor/visibility-sensor.js
-var visibility_sensor = __webpack_require__(10);
+var visibility_sensor = __webpack_require__(9);
 var visibility_sensor_default = /*#__PURE__*/__webpack_require__.n(visibility_sensor);
 
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
 var prop_types = __webpack_require__(4);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 
-// EXTERNAL MODULE: ./node_modules/react-dom/index.js
-var react_dom = __webpack_require__(5);
-var react_dom_default = /*#__PURE__*/__webpack_require__.n(react_dom);
+// CONCATENATED MODULE: ./src/index.jsx
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-// EXTERNAL MODULE: ./node_modules/scroll-into-view/scrollIntoView.js
-var scrollIntoView = __webpack_require__(25);
-var scrollIntoView_default = /*#__PURE__*/__webpack_require__.n(scrollIntoView);
-
-// CONCATENATED MODULE: ./src/ScrollView.jsx
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -18931,171 +18880,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 
-
-
-
-
-var ScrollView_ScrollView = function (_Component) {
-  _inherits(ScrollView, _Component);
-
-  function ScrollView() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, ScrollView);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ScrollView.__proto__ || Object.getPrototypeOf(ScrollView)).call.apply(_ref, [this].concat(args))), _this), _this.elements = {}, _this.register = function () {
-      var _this2;
-
-      return (_this2 = _this).__register__REACT_HOT_LOADER__.apply(_this2, arguments);
-    }, _this.unregister = function () {
-      var _this3;
-
-      return (_this3 = _this).__unregister__REACT_HOT_LOADER__.apply(_this3, arguments);
-    }, _this.scrollTo = function () {
-      var _this4;
-
-      return (_this4 = _this).__scrollTo__REACT_HOT_LOADER__.apply(_this4, arguments);
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(ScrollView, [{
-    key: '__scrollTo__REACT_HOT_LOADER__',
-    value: function __scrollTo__REACT_HOT_LOADER__() {
-      return this.__scrollTo__REACT_HOT_LOADER__.apply(this, arguments);
-    }
-  }, {
-    key: '__unregister__REACT_HOT_LOADER__',
-    value: function __unregister__REACT_HOT_LOADER__() {
-      return this.__unregister__REACT_HOT_LOADER__.apply(this, arguments);
-    }
-  }, {
-    key: '__register__REACT_HOT_LOADER__',
-    value: function __register__REACT_HOT_LOADER__() {
-      return this.__register__REACT_HOT_LOADER__.apply(this, arguments);
-    }
-  }, {
-    key: '__register__REACT_HOT_LOADER__',
-    value: function __register__REACT_HOT_LOADER__(name, ref) {
-      this.elements[name] = ref;
-    }
-  }, {
-    key: '__unregister__REACT_HOT_LOADER__',
-    value: function __unregister__REACT_HOT_LOADER__(name) {
-      delete this.elements[name];
-    }
-  }, {
-    key: 'getChildContext',
-    value: function getChildContext() {
-      return {
-        scroll: {
-          register: this.register,
-          unregister: this.unregister
-        }
-      };
-    }
-  }, {
-    key: '__scrollTo__REACT_HOT_LOADER__',
-    value: function __scrollTo__REACT_HOT_LOADER__(name) {
-      var node = react_dom_default.a.findDOMNode(this.elements[name]);
-      scrollIntoView_default()(node, {
-        time: 500
-        // align: {
-        //   top: 0
-        // }
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return react_default.a.Children.only(this.props.children);
-    }
-  }]);
-
-  return ScrollView;
-}(react["Component"]);
-
-ScrollView_ScrollView.childContextTypes = {
-  scroll: prop_types_default.a.object
-};
-
-var ScrollView_ScrollElement = function (_Component2) {
-  _inherits(ScrollElement, _Component2);
-
-  function ScrollElement() {
-    _classCallCheck(this, ScrollElement);
-
-    return _possibleConstructorReturn(this, (ScrollElement.__proto__ || Object.getPrototypeOf(ScrollElement)).apply(this, arguments));
-  }
-
-  _createClass(ScrollElement, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.context.scroll.register(this.props.name, this._element);
-    }
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      this.context.scroll.unregister(this.props.name);
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this6 = this;
-
-      return react_default.a.cloneElement(this.props.children, {
-        ref: function ref(_ref2) {
-          return _this6._element = _ref2;
-        }
-      });
-    }
-  }]);
-
-  return ScrollElement;
-}(react["Component"]);
-
-ScrollView_ScrollElement.contextTypes = {
-  scroll: prop_types_default.a.object
-};
-
-
-
-;
-
-var _temp2 = function () {
-  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-    return;
-  }
-
-  __REACT_HOT_LOADER__.register(ScrollView_ScrollView, 'ScrollView', '/home/djan/dev/MyGrid2/src/ScrollView.jsx');
-
-  __REACT_HOT_LOADER__.register(ScrollView_ScrollElement, 'ScrollElement', '/home/djan/dev/MyGrid2/src/ScrollView.jsx');
-}();
-
-;
-// CONCATENATED MODULE: ./src/index.jsx
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var src__createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function src__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function src__possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function src__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
 // import ReactDOM from 'react-dom';
 
 
 
 
-
+// import { ScrollView, ScrollElement } from './ScrollView';
 // import cx from './index.scss';
 
 // function getCol(n) {
@@ -19112,12 +18902,12 @@ function getCol(i, n, span) {
 }
 
 var src_Grid = function (_Component) {
-  src__inherits(Grid, _Component);
+  _inherits(Grid, _Component);
 
   function Grid(props) {
-    src__classCallCheck(this, Grid);
+    _classCallCheck(this, Grid);
 
-    var _this = src__possibleConstructorReturn(this, (Grid.__proto__ || Object.getPrototypeOf(Grid)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Grid.__proto__ || Object.getPrototypeOf(Grid)).call(this, props));
 
     _this.scrollTo = function () {
       return _this.__scrollTo__REACT_HOT_LOADER__.apply(_this, arguments);
@@ -19127,7 +18917,7 @@ var src_Grid = function (_Component) {
     return _this;
   }
 
-  src__createClass(Grid, [{
+  _createClass(Grid, [{
     key: '__scrollTo__REACT_HOT_LOADER__',
     value: function __scrollTo__REACT_HOT_LOADER__() {
       return this.__scrollTo__REACT_HOT_LOADER__.apply(this, arguments);
@@ -19150,8 +18940,6 @@ var src_Grid = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
-
       var _props = this.props,
           children = _props.children,
           selectedColSpan = _props.selectedColSpan,
@@ -19178,41 +18966,31 @@ var src_Grid = function (_Component) {
       if (rows && rowHeight) gridTemplateRows = 'repeat(' + rows + ', ' + rowHeight + ')';else if (rows) gridTemplateRows = 'repeat(' + rows + ', ' + Math.floor(100 / rows) + '%)';else if (rowHeight) gridTemplateRows = 'repeat(' + children.length + ', ' + colWidth + ')';else gridTemplateRows = null;
 
       return react_default.a.createElement(
-        ScrollView_ScrollView,
-        { ref: function ref(scroller) {
-            return _this2._scroller = scroller;
-          } },
-        react_default.a.createElement(
-          'div',
-          {
-            style: _extends({}, style, {
-              display: 'grid',
-              height: '100%',
-              gridAutoFlow: 'column dense',
-              gridTemplateRows: gridTemplateRows,
-              gridTemplateColumns: gridTemplateColumns,
-              gridGap: gap + '%'
-            })
-          },
-          react_default.a.Children.map(children, function (comp, i) {
-            var col = getCol(i, children.length, colSpan); // Math.floor(i / 2) + 1;
-            var selectedComp = comp.props.selected;
-            return react_default.a.createElement(
-              ScrollView_ScrollElement,
-              { name: i },
-              react_default.a.createElement(
-                src_Item,
-                {
-                  colSpan: selectedComp ? selectedColSpan : colSpan,
-                  rowSpan: selectedComp ? 2 : 1,
-                  col: selectedComp ? col : null,
-                  index: i
-                },
-                comp
-              )
-            );
+        'div',
+        {
+          style: _extends({}, style, {
+            display: 'grid',
+            height: '100%',
+            gridAutoFlow: 'column dense',
+            gridTemplateRows: gridTemplateRows,
+            gridTemplateColumns: gridTemplateColumns,
+            gridGap: gap + '%'
           })
-        )
+        },
+        react_default.a.Children.map(children, function (comp, i) {
+          var col = getCol(i, children.length, colSpan); // Math.floor(i / 2) + 1;
+          var selectedComp = comp.props.selected;
+          return react_default.a.createElement(
+            src_Item,
+            {
+              colSpan: selectedComp ? selectedColSpan : colSpan,
+              rowSpan: selectedComp ? 2 : 1,
+              col: selectedComp ? col : null,
+              index: i
+            },
+            comp
+          );
+        })
       );
     }
   }]);
@@ -19256,15 +19034,15 @@ src_Grid.defaultProps = {
 };
 
 var src_Item = function (_Component2) {
-  src__inherits(Item, _Component2);
+  _inherits(Item, _Component2);
 
   function Item() {
-    src__classCallCheck(this, Item);
+    _classCallCheck(this, Item);
 
-    return src__possibleConstructorReturn(this, (Item.__proto__ || Object.getPrototypeOf(Item)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (Item.__proto__ || Object.getPrototypeOf(Item)).apply(this, arguments));
   }
 
-  src__createClass(Item, [{
+  _createClass(Item, [{
     key: 'render',
     value: function render() {
       var _props2 = this.props,
@@ -19341,7 +19119,7 @@ var _temp = function () {
 ;
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19369,14 +19147,14 @@ isValidElement:K,version:"16.2.0",__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_F
 
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var React = __webpack_require__(0);
-var ReactDOM = __webpack_require__(5);
+var ReactDOM = __webpack_require__(10);
 var PropTypes = __webpack_require__(4);
 var createReactClass = __webpack_require__(22);
 var isVisibleWithOffset = __webpack_require__(24)
@@ -19697,6 +19475,51 @@ module.exports = createReactClass({
     return React.Children.only(this.props.children);
   }
 });
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function checkDCE() {
+  /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
+  if (
+    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' ||
+    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function'
+  ) {
+    return;
+  }
+  if (false) {
+    // This branch is unreachable because this function is only called
+    // in production, but the condition is true only in development.
+    // Therefore if the branch is still here, dead code elimination wasn't
+    // properly applied.
+    // Don't change the message. React DevTools relies on it. Also make sure
+    // this message doesn't occur elsewhere in this function, or it will cause
+    // a false positive.
+    throw new Error('^_^');
+  }
+  try {
+    // Verify that the code above has been dead code eliminated (DCE'd).
+    __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);
+  } catch (err) {
+    // DevTools shouldn't crash React, no matter what.
+    // We should still report in case we break this code.
+    console.error(err);
+  }
+}
+
+if (true) {
+  // DCE check should happen before ReactDOM bundle executes so that
+  // DevTools can report bad minification during injection.
+  checkDCE();
+  module.exports = __webpack_require__(11);
+} else {
+  module.exports = require('./cjs/react-dom.development.js');
+}
 
 
 /***/ }),
@@ -20311,7 +20134,7 @@ module.exports = focusNode;
 
 
 var emptyFunction = __webpack_require__(1);
-var invariant = __webpack_require__(6);
+var invariant = __webpack_require__(5);
 var ReactPropTypesSecret = __webpack_require__(21);
 
 module.exports = function() {
@@ -20433,7 +20256,7 @@ module.exports = factory(
 var _assign = __webpack_require__(2);
 
 var emptyObject = __webpack_require__(3);
-var _invariant = __webpack_require__(6);
+var _invariant = __webpack_require__(5);
 
 if (false) {
   var warning = require('fbjs/lib/warning');
@@ -21331,209 +21154,6 @@ module.exports = function (offset, rect, containmentRect) {
       (containmentRect.bottom > rect.bottom);
   }
 }
-
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports) {
-
-var COMPLETE = 'complete',
-    CANCELED = 'canceled';
-
-function raf(task){
-    if('requestAnimationFrame' in window){
-        return window.requestAnimationFrame(task);
-    }
-
-    setTimeout(task, 16);
-}
-
-function setElementScroll(element, x, y){
-    if(element.self === element){
-        element.scrollTo(x, y);
-    }else{
-        element.scrollLeft = x;
-        element.scrollTop = y;
-    }
-}
-
-function getTargetScrollLocation(target, parent, align){
-    var targetPosition = target.getBoundingClientRect(),
-        parentPosition,
-        x,
-        y,
-        differenceX,
-        differenceY,
-        targetWidth,
-        targetHeight,
-        leftAlign = align && align.left != null ? align.left : 0.5,
-        topAlign = align && align.top != null ? align.top : 0.5,
-        leftOffset = align && align.leftOffset != null ? align.leftOffset : 0,
-        topOffset = align && align.topOffset != null ? align.topOffset : 0,
-        leftScalar = leftAlign,
-        topScalar = topAlign;
-
-    if(parent.self === parent){
-        targetWidth = Math.min(targetPosition.width, parent.innerWidth);
-        targetHeight = Math.min(targetPosition.height, parent.innerHeight);
-        x = targetPosition.left + parent.pageXOffset - parent.innerWidth * leftScalar + targetWidth * leftScalar;
-        y = targetPosition.top + parent.pageYOffset - parent.innerHeight * topScalar + targetHeight * topScalar;
-        x -= leftOffset;
-        y -= topOffset;
-        differenceX = x - parent.pageXOffset;
-        differenceY = y - parent.pageYOffset;
-    }else{
-        targetWidth = targetPosition.width;
-        targetHeight = targetPosition.height;
-        parentPosition = parent.getBoundingClientRect();
-        var offsetLeft = targetPosition.left - (parentPosition.left - parent.scrollLeft);
-        var offsetTop = targetPosition.top - (parentPosition.top - parent.scrollTop);
-        x = offsetLeft + (targetWidth * leftScalar) - parent.clientWidth * leftScalar;
-        y = offsetTop + (targetHeight * topScalar) - parent.clientHeight * topScalar;
-        x = Math.max(Math.min(x, parent.scrollWidth - parent.clientWidth), 0);
-        y = Math.max(Math.min(y, parent.scrollHeight - parent.clientHeight), 0);
-        x -= leftOffset;
-        y -= topOffset;
-        differenceX = x - parent.scrollLeft;
-        differenceY = y - parent.scrollTop;
-    }
-
-    return {
-        x: x,
-        y: y,
-        differenceX: differenceX,
-        differenceY: differenceY
-    };
-}
-
-function animate(parent){
-    raf(function(){
-        var scrollSettings = parent._scrollSettings;
-        if(!scrollSettings){
-            return;
-        }
-
-        var location = getTargetScrollLocation(scrollSettings.target, parent, scrollSettings.align),
-            time = Date.now() - scrollSettings.startTime,
-            timeValue = Math.min(1 / scrollSettings.time * time, 1);
-
-        if(
-            time > scrollSettings.time + 20
-        ){
-            setElementScroll(parent, location.x, location.y);
-            parent._scrollSettings = null;
-            return scrollSettings.end(COMPLETE);
-        }
-
-        var easeValue = 1 - scrollSettings.ease(timeValue);
-
-        setElementScroll(parent,
-            location.x - location.differenceX * easeValue,
-            location.y - location.differenceY * easeValue
-        );
-
-        animate(parent);
-    });
-}
-function transitionScrollTo(target, parent, settings, callback){
-    var idle = !parent._scrollSettings,
-        lastSettings = parent._scrollSettings,
-        now = Date.now(),
-        endHandler;
-
-    if(lastSettings){
-        lastSettings.end(CANCELED);
-    }
-
-    function end(endType){
-        parent._scrollSettings = null;
-        if(parent.parentElement && parent.parentElement._scrollSettings){
-            parent.parentElement._scrollSettings.end(endType);
-        }
-        callback(endType);
-        parent.removeEventListener('touchstart', endHandler);
-    }
-
-    parent._scrollSettings = {
-        startTime: lastSettings ? lastSettings.startTime : Date.now(),
-        target: target,
-        time: settings.time + (lastSettings ? now - lastSettings.startTime : 0),
-        ease: settings.ease,
-        align: settings.align,
-        end: end
-    };
-
-    endHandler = end.bind(null, CANCELED);
-    parent.addEventListener('touchstart', endHandler);
-
-    if(idle){
-        animate(parent);
-    }
-}
-
-function defaultIsScrollable(element){
-    return (
-        'pageXOffset' in element ||
-        (
-            element.scrollHeight !== element.clientHeight ||
-            element.scrollWidth !== element.clientWidth
-        ) &&
-        getComputedStyle(element).overflow !== 'hidden'
-    );
-}
-
-function defaultValidTarget(){
-    return true;
-}
-
-module.exports = function(target, settings, callback){
-    if(!target){
-        return;
-    }
-
-    if(typeof settings === 'function'){
-        callback = settings;
-        settings = null;
-    }
-
-    if(!settings){
-        settings = {};
-    }
-
-    settings.time = isNaN(settings.time) ? 1000 : settings.time;
-    settings.ease = settings.ease || function(v){return 1 - Math.pow(1 - v, v / 2);};
-
-    var parent = target.parentElement,
-        parents = 0;
-
-    function done(endType){
-        parents--;
-        if(!parents){
-            callback && callback(endType);
-        }
-    }
-
-    var validTarget = settings.validTarget || defaultValidTarget;
-    var isScrollable = settings.isScrollable;
-
-    while(parent){
-        if(validTarget(parent, parents) && (isScrollable ? isScrollable(parent, defaultIsScrollable) : defaultIsScrollable(parent))){
-            parents++;
-            transitionScrollTo(target, parent, settings, done);
-        }
-
-        parent = parent.parentElement;
-
-        if(!parent){
-            return;
-        }
-
-        if(parent.tagName === 'BODY'){
-            parent = parent.ownerDocument;
-            parent = parent.defaultView || parent.ownerWindow;
-        }
-    }
-};
 
 
 /***/ })

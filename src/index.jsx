@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 import VisibilitySensor from 'react-visibility-sensor';
 import PropTypes from 'prop-types';
 
-import { ScrollView, ScrollElement } from './ScrollView';
+// import { ScrollView, ScrollElement } from './ScrollView';
 // import cx from './index.scss';
 
 // function getCol(n) {
@@ -82,36 +82,32 @@ class Grid extends Component {
     else gridTemplateRows = null;
 
     return (
-      <ScrollView ref={scroller => (this._scroller = scroller)}>
-        <div
-          style={{
-            ...style,
-            display: 'grid',
-            height: '100%',
-            gridAutoFlow: 'column dense',
-            gridTemplateRows,
-            gridTemplateColumns,
-            gridGap: `${gap}%`
-          }}
-        >
-          {React.Children.map(children, (comp, i) => {
-            const col = getCol(i, children.length, colSpan); // Math.floor(i / 2) + 1;
-            const selectedComp = comp.props.selected;
-            return (
-              <ScrollElement name={i}>
-                <Item
-                  colSpan={selectedComp ? selectedColSpan : colSpan}
-                  rowSpan={selectedComp ? 2 : 1}
-                  col={selectedComp ? col : null}
-                  index={i}
-                >
-                  {comp}
-                </Item>
-              </ScrollElement>
-            );
-          })}
-        </div>
-      </ScrollView>
+      <div
+        style={{
+          ...style,
+          display: 'grid',
+          height: '100%',
+          gridAutoFlow: 'column dense',
+          gridTemplateRows,
+          gridTemplateColumns,
+          gridGap: `${gap}%`
+        }}
+      >
+        {React.Children.map(children, (comp, i) => {
+          const col = getCol(i, children.length, colSpan); // Math.floor(i / 2) + 1;
+          const selectedComp = comp.props.selected;
+          return (
+            <Item
+              colSpan={selectedComp ? selectedColSpan : colSpan}
+              rowSpan={selectedComp ? 2 : 1}
+              col={selectedComp ? col : null}
+              index={i}
+            >
+              {comp}
+            </Item>
+          );
+        })}
+      </div>
     );
   }
 }
