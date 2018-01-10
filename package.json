@@ -2,7 +2,7 @@
   "name": "mygrid",
   "version": "0.0.2",
   "description": "react css grid component",
-  "main": "''",
+  "main": "'./dist/index.js'",
   "scripts": {
     "start": "webpack-dev-server --progress --profile --colors --inline --hot --port 8888",
     "build": "webpack --config ./webpack.production.config.js --progress"
