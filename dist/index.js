@@ -19198,31 +19198,18 @@ var src_Grid = function (_Component) {
             var col = getCol(i, children.length, colSpan); // Math.floor(i / 2) + 1;
             var selectedComp = comp.props.selected;
             return react_default.a.createElement(
-              visibility_sensor_default.a,
-              {
-                offset: {
-                  bottom: 0,
-                  top: 0
-                }
-              },
-              function (_ref) {
-                var isVisible = _ref.isVisible;
-                return react_default.a.createElement(
-                  ScrollView_ScrollElement,
-                  { name: i },
-                  react_default.a.createElement(
-                    src_Item,
-                    {
-                      colSpan: selectedComp ? selectedColSpan : colSpan,
-                      rowSpan: selectedComp ? 2 : 1,
-                      col: selectedComp ? col : null,
-                      visible: isVisible,
-                      index: i
-                    },
-                    comp
-                  )
-                );
-              }
+              ScrollView_ScrollElement,
+              { name: i },
+              react_default.a.createElement(
+                src_Item,
+                {
+                  colSpan: selectedComp ? selectedColSpan : colSpan,
+                  rowSpan: selectedComp ? 2 : 1,
+                  col: selectedComp ? col : null,
+                  index: i
+                },
+                comp
+              )
             );
           })
         )
@@ -19282,7 +19269,6 @@ var src_Item = function (_Component2) {
     value: function render() {
       var _props2 = this.props,
           children = _props2.children,
-          visible = _props2.visible,
           opacity = _props2.opacity,
           colSpan = _props2.colSpan,
           rowSpan = _props2.rowSpan,
@@ -19297,11 +19283,10 @@ var src_Item = function (_Component2) {
           style: {
             overflow: 'hidden',
             gridColumn: col ? col + ' / span ' + colSpan : 'span ' + colSpan,
-            gridRowEnd: 'span ' + rowSpan,
-            opacity: visible || selected ? 1 : opacity
+            gridRowEnd: 'span ' + rowSpan
           },
           onClick: function onClick() {
-            return !selected && clickHandler(children.props.id);
+            return clickHandler(children.props.id);
           }
         },
         children
@@ -19319,7 +19304,6 @@ src_Item.propTypes = {
   rowSpan: prop_types_default.a.number,
   colSpan: prop_types_default.a.number,
   opacity: prop_types_default.a.number,
-  visible: prop_types_default.a.bool,
   clickHandler: prop_types_default.a.func
 };
 src_Item.defaultProps = {

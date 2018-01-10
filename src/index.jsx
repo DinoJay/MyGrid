@@ -98,26 +98,16 @@ class Grid extends Component {
             const col = getCol(i, children.length, colSpan); // Math.floor(i / 2) + 1;
             const selectedComp = comp.props.selected;
             return (
-              <VisibilitySensor
-                offset={{
-                  bottom: 0,
-                  top: 0
-                }}
-              >
-                {({ isVisible }) => (
-                  <ScrollElement name={i}>
-                    <Item
-                      colSpan={selectedComp ? selectedColSpan : colSpan}
-                      rowSpan={selectedComp ? 2 : 1}
-                      col={selectedComp ? col : null}
-                      visible={isVisible}
-                      index={i}
-                    >
-                      {comp}
-                    </Item>
-                  </ScrollElement>
-                )}
-              </VisibilitySensor>
+              <ScrollElement name={i}>
+                <Item
+                  colSpan={selectedComp ? selectedColSpan : colSpan}
+                  rowSpan={selectedComp ? 2 : 1}
+                  col={selectedComp ? col : null}
+                  index={i}
+                >
+                  {comp}
+                </Item>
+              </ScrollElement>
             );
           })}
         </div>
@@ -150,7 +140,6 @@ class Item extends Component {
     rowSpan: PropTypes.number,
     colSpan: PropTypes.number,
     opacity: PropTypes.number,
-    visible: PropTypes.bool,
     clickHandler: PropTypes.func
   };
 
@@ -161,7 +150,6 @@ class Item extends Component {
   render() {
     const {
       children,
-      visible,
       opacity,
       colSpan,
       rowSpan,
@@ -175,10 +163,9 @@ class Item extends Component {
         style={{
           overflow: 'hidden',
           gridColumn: col ? `${col} / span ${colSpan}` : `span ${colSpan}`,
-          gridRowEnd: `span ${rowSpan}`,
-          opacity: visible || selected ? 1 : opacity
+          gridRowEnd: `span ${rowSpan}`
         }}
-        onClick={() => !selected && clickHandler(children.props.id)}
+        onClick={() => clickHandler(children.props.id)}
       >
         {children}
       </div>
