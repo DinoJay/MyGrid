@@ -21,6 +21,9 @@
     "url": "https://github.com/alicoding/react-webpack-babel/issues"
   },
   "homepage": "https://github.com/alicoding/react-webpack-babel#readme",
+  "peerDependencies": {
+    "react": "^15.5.4"
+  },
   "dependencies": {
     "d3": "^4.12.2",
     "d3-measure-text": "0.0.2",
