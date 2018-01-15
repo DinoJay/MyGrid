@@ -199,6 +199,8 @@ var Grid = function (_Component) {
           colWidth = _props.colWidth,
           rowHeight = _props.rowHeight,
           cols = _props.cols,
+          colSpan = _props.colSpan,
+          rowSpan = _props.rowSpan,
           rows = _props.rows,
           gap = _props.gap,
           style = _props.style;
@@ -229,13 +231,17 @@ var Grid = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.Children.map(children, function (comp, i) {
           var col = getCol(i, children.length, colSpan); // Math.floor(i / 2) + 1;
           var _comp$props = comp.props,
-              colSpan = _comp$props.colSpan,
-              rowSpan = _comp$props.rowSpan;
+              cspan = _comp$props.colSpan,
+              rspan = _comp$props.rowSpan,
+              selected = _comp$props.selected;
 
-          var props = { colSpan: colSpan, rowSpan: rowSpan };
+          var props = {
+            colSpan: cspan || colSpan,
+            rowSpan: rspan || colSpan
+          };
           return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             Item,
-            _extends({}, props, { index: i }),
+            _extends({}, props, { index: i, col: selected ? col : null }),
             comp
           );
         })

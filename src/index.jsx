@@ -56,6 +56,8 @@ class Grid extends Component {
       colWidth,
       rowHeight,
       cols,
+      colSpan,
+      rowSpan,
       rows,
       gap,
       style
@@ -91,10 +93,13 @@ class Grid extends Component {
       >
         {React.Children.map(children, (comp, i) => {
           const col = getCol(i, children.length, colSpan); // Math.floor(i / 2) + 1;
-          const { colSpan, rowSpan } = comp.props;
-          const props = { colSpan, rowSpan };
+          const { colSpan: cspan, rowSpan: rspan, selected } = comp.props;
+          const props = {
+            colSpan: cspan || colSpan,
+            rowSpan: rspan || colSpan
+          };
           return (
-            <Item {...props} index={i}>
+            <Item {...props} index={i} col={selected ? col : null}>
               {comp}
             </Item>
           );
