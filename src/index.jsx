@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 // import ReactDOM from 'react-dom';
-import * as d3 from 'd3';
-import VisibilitySensor from 'react-visibility-sensor';
+import { range } from 'd3';
 import PropTypes from 'prop-types';
 
 // import { ScrollView, ScrollElement } from './ScrollView';
@@ -16,7 +15,7 @@ function getCol(i, n, span) {
   // const a = d3.range(0, n, span);
   // return d3.range(0, n).map(d => a[Math.floor(d / 2)]);
   // return [1, 1, 4, 4, 7, 7, 10, 10, 13, 13, 16, 16, 19, 19, 22, 22];
-  const cols = d3.range(1, n * span, span);
+  const cols = range(1, n * span, span);
   return cols[Math.floor(i / 2)]; // Math.floor(i / 2) + 1;
 }
 
@@ -54,8 +53,6 @@ class Grid extends Component {
       children,
       selectedColSpan,
       selectedRowSpan,
-      colSpan,
-      rowSpan,
       colWidth,
       rowHeight,
       cols,
@@ -84,25 +81,20 @@ class Grid extends Component {
     return (
       <div
         style={{
-          ...style,
           display: 'grid',
           height: '100%',
-          gridAutoFlow: 'column dense',
           gridTemplateRows,
           gridTemplateColumns,
-          gridGap: `${gap}%`
+          gridGap: `${gap}%`,
+          ...style
         }}
       >
         {React.Children.map(children, (comp, i) => {
           const col = getCol(i, children.length, colSpan); // Math.floor(i / 2) + 1;
-          const selectedComp = comp.props.selected;
+          const { colSpan, rowSpan } = comp.props;
+          const props = { colSpan, rowSpan };
           return (
-            <Item
-              colSpan={selectedComp ? selectedColSpan : colSpan}
-              rowSpan={selectedComp ? 2 : 1}
-              col={selectedComp ? col : null}
-              index={i}
-            >
+            <Item {...props} index={i}>
               {comp}
             </Item>
           );
