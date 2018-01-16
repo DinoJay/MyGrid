@@ -154,7 +154,7 @@ class Item extends Component {
     return (
       <div
         style={{
-          overflow: 'hidden',
+          // overflow: 'hidden',
           gridColumn: col ? `${col} / span ${colSpan}` : `span ${colSpan}`,
           gridRowEnd: `span ${rowSpan}`
         }}

@@ -317,7 +317,7 @@ var Item = function (_Component2) {
         'div',
         {
           style: {
-            overflow: 'hidden',
+            // overflow: 'hidden',
             gridColumn: col ? col + ' / span ' + colSpan : 'span ' + colSpan,
             gridRowEnd: 'span ' + rowSpan
           }
