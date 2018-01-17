@@ -146,27 +146,29 @@ class Item extends Component {
       opacity,
       colSpan,
       rowSpan,
-      col,
+      col
       // clickHandler,
       // selected
     } = this.props;
 
-    // const style={
+    const styleProps = {
+      style: {
+        gridColumn: col ? `${col} / span ${colSpan}` : `span ${colSpan}`,
+        gridRowEnd: `span ${rowSpan}`
+      }
+    };
+    return React.cloneElement(children, styleProps);
+    // return (
+    //   <div
+    //     style={{
+    //       // overflow: 'hidden',
     //       gridColumn: col ? `${col} / span ${colSpan}` : `span ${colSpan}`,
     //       gridRowEnd: `span ${rowSpan}`
-    //     }
-    // return React.cloneElement(children, style);
-    return (
-      <div
-        style={{
-          // overflow: 'hidden',
-          gridColumn: col ? `${col} / span ${colSpan}` : `span ${colSpan}`,
-          gridRowEnd: `span ${rowSpan}`
-        }}
-      >
-        {children}
-      </div>
-    );
+    //     }}
+    //   >
+    //     {children}
+    //   </div>
+    // );
   }
 }
 

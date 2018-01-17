@@ -311,23 +311,25 @@ var Item = function (_Component2) {
           rowSpan = _props2.rowSpan,
           col = _props2.col;
 
-      // const style={
+
+      var styleProps = {
+        style: {
+          gridColumn: col ? col + ' / span ' + colSpan : 'span ' + colSpan,
+          gridRowEnd: 'span ' + rowSpan
+        }
+      };
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.cloneElement(children, styleProps);
+      // return (
+      //   <div
+      //     style={{
+      //       // overflow: 'hidden',
       //       gridColumn: col ? `${col} / span ${colSpan}` : `span ${colSpan}`,
       //       gridRowEnd: `span ${rowSpan}`
-      //     }
-      // return React.cloneElement(children, style);
-
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        {
-          style: {
-            // overflow: 'hidden',
-            gridColumn: col ? col + ' / span ' + colSpan : 'span ' + colSpan,
-            gridRowEnd: 'span ' + rowSpan
-          }
-        },
-        children
-      );
+      //     }}
+      //   >
+      //     {children}
+      //   </div>
+      // );
     }
   }, {
     key: '__reactstandin__regenerateByEval',
