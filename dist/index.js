@@ -309,9 +309,13 @@ var Item = function (_Component2) {
           opacity = _props2.opacity,
           colSpan = _props2.colSpan,
           rowSpan = _props2.rowSpan,
-          col = _props2.col,
-          selected = _props2.selected;
+          col = _props2.col;
 
+      // const style={
+      //       gridColumn: col ? `${col} / span ${colSpan}` : `span ${colSpan}`,
+      //       gridRowEnd: `span ${rowSpan}`
+      //     }
+      // return React.cloneElement(children, style);
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',

@@ -148,9 +148,14 @@ class Item extends Component {
       rowSpan,
       col,
       // clickHandler,
-      selected
+      // selected
     } = this.props;
 
+    // const style={
+    //       gridColumn: col ? `${col} / span ${colSpan}` : `span ${colSpan}`,
+    //       gridRowEnd: `span ${rowSpan}`
+    //     }
+    // return React.cloneElement(children, style);
     return (
       <div
         style={{
