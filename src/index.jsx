@@ -151,7 +151,7 @@ class Item extends Component {
       selected
     } = this.props;
     const newProps = {
-      ...children.props.style,
+      // ...children.props.style,
       gridColumn: col ? `${col} / span ${colSpan}` : `span ${colSpan}`,
       gridRowEnd: `span ${rowSpan}`
     };
