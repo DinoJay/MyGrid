@@ -235,6 +235,7 @@ var Grid = function (_Component) {
               rspan = _comp$props.rowSpan,
               selected = _comp$props.selected;
 
+          console.log('colSpan', colSpan, 'cspan', cspan);
           var props = {
             colSpan: cspan || colSpan,
             rowSpan: rspan || colSpan

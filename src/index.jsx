@@ -94,6 +94,7 @@ class Grid extends Component {
         {React.Children.map(children, (comp, i) => {
           const col = getCol(i, children.length, colSpan); // Math.floor(i / 2) + 1;
           const { colSpan: cspan, rowSpan: rspan, selected } = comp.props;
+          console.log('colSpan', colSpan, 'cspan', cspan);
           const props = {
             colSpan: cspan || colSpan,
             rowSpan: rspan || colSpan
