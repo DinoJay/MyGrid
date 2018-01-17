@@ -313,10 +313,10 @@ var Item = function (_Component2) {
 
 
       var styleProps = {
-        style: {
+        style: _extends({}, children.props.style, {
           gridColumn: col ? col + ' / span ' + colSpan : 'span ' + colSpan,
           gridRowEnd: 'span ' + rowSpan
-        }
+        })
       };
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.cloneElement(children, styleProps);
       // return (
