@@ -7,7 +7,7 @@ import Grid from '../src';
 
 export default () => (
   <div style={{ border: '1px green solid', width: '100%' }}>
-    <Grid cols={4} colSpan={2} rows={20} gap={0}>
+    <Grid cols={3} colSpan={2} rows={20} gap={0}>
       {d3
         .range(0, 10)
         .map(d => <div style={{ border: 'blue 1px solid' }}>{d}</div>)}

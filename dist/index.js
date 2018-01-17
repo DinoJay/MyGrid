@@ -288,7 +288,7 @@ Grid.defaultProps = {
   colHeight: null,
   cols: null,
   rows: null,
-  gap: 0,
+  ap: 0,
   style: {}
 };
 
@@ -312,18 +312,12 @@ var Item = function (_Component2) {
           col = _props2.col,
           selected = _props2.selected;
 
+      var newProps = _extends({}, children.props.style, {
+        gridColumn: col ? col + ' / span ' + colSpan : 'span ' + colSpan,
+        gridRowEnd: 'span ' + rowSpan
+      });
 
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        {
-          style: {
-            // overflow: 'hidden',
-            gridColumn: col ? col + ' / span ' + colSpan : 'span ' + colSpan,
-            gridRowEnd: 'span ' + rowSpan
-          }
-        },
-        children
-      );
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.cloneElement(children, newProps);
     }
   }, {
     key: '__reactstandin__regenerateByEval',

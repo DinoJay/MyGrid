@@ -121,7 +121,7 @@ Grid.defaultProps = {
   colHeight: null,
   cols: null,
   rows: null,
-  gap: 0,
+  ap: 0,
   style: {}
 };
 
@@ -150,18 +150,13 @@ class Item extends Component {
       // clickHandler,
       selected
     } = this.props;
+    const newProps = {
+      ...children.props.style,
+      gridColumn: col ? `${col} / span ${colSpan}` : `span ${colSpan}`,
+      gridRowEnd: `span ${rowSpan}`
+    };
 
-    return (
-      <div
-        style={{
-          // overflow: 'hidden',
-          gridColumn: col ? `${col} / span ${colSpan}` : `span ${colSpan}`,
-          gridRowEnd: `span ${rowSpan}`
-        }}
-      >
-        {children}
-      </div>
-    );
+    return React.cloneElement(children, newProps);
   }
 }
 
