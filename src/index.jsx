@@ -85,6 +85,7 @@ class Grid extends Component {
         style={{
           display: 'grid',
           height: '100%',
+          width: '100%',
           gridTemplateRows,
           gridTemplateColumns,
           gridGap: `${gap}%`,

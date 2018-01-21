@@ -136,17 +136,17 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 (function () {
   var enterModule = __webpack_require__(0).enterModule;
 
   enterModule && enterModule(module);
 })();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 
 // import ReactDOM from 'react-dom';
@@ -223,6 +223,7 @@ var Grid = function (_Component) {
           style: _extends({
             display: 'grid',
             height: '100%',
+            width: '100%',
             gridTemplateRows: gridTemplateRows,
             gridTemplateColumns: gridTemplateColumns,
             gridGap: gap + '%'
@@ -13645,6 +13646,371 @@ function continuous(deinterpolate, reinterpolate) {
   return rescale();
 }
 
+// CONCATENATED MODULE: ./node_modules/d3-scale/node_modules/d3-format/src/formatDecimal.js
+// Computes the decimal coefficient and exponent of the specified number x with
+// significant digits p, where x is positive and p is in [1, 21] or undefined.
+// For example, formatDecimal(1.23) returns ["123", 0].
+/* harmony default export */ var src_formatDecimal = (function(x, p) {
+  if ((i = (x = p ? x.toExponential(p - 1) : x.toExponential()).indexOf("e")) < 0) return null; // NaN, ±Infinity
+  var i, coefficient = x.slice(0, i);
+
+  // The string returned by toExponential either has the form \d\.\d+e[-+]\d+
+  // (e.g., 1.2e+3) or the form \de[-+]\d+ (e.g., 1e+3).
+  return [
+    coefficient.length > 1 ? coefficient[0] + coefficient.slice(2) : coefficient,
+    +x.slice(i + 1)
+  ];
+});
+
+// CONCATENATED MODULE: ./node_modules/d3-scale/node_modules/d3-format/src/exponent.js
+
+
+/* harmony default export */ var d3_format_src_exponent = (function(x) {
+  return x = src_formatDecimal(Math.abs(x)), x ? x[1] : NaN;
+});
+
+// CONCATENATED MODULE: ./node_modules/d3-scale/node_modules/d3-format/src/formatGroup.js
+/* harmony default export */ var src_formatGroup = (function(grouping, thousands) {
+  return function(value, width) {
+    var i = value.length,
+        t = [],
+        j = 0,
+        g = grouping[0],
+        length = 0;
+
+    while (i > 0 && g > 0) {
+      if (length + g + 1 > width) g = Math.max(1, width - length);
+      t.push(value.substring(i -= g, i + g));
+      if ((length += g + 1) > width) break;
+      g = grouping[j = (j + 1) % grouping.length];
+    }
+
+    return t.reverse().join(thousands);
+  };
+});
+
+// CONCATENATED MODULE: ./node_modules/d3-scale/node_modules/d3-format/src/formatNumerals.js
+/* harmony default export */ var src_formatNumerals = (function(numerals) {
+  return function(value) {
+    return value.replace(/[0-9]/g, function(i) {
+      return numerals[+i];
+    });
+  };
+});
+
+// CONCATENATED MODULE: ./node_modules/d3-scale/node_modules/d3-format/src/formatDefault.js
+/* harmony default export */ var src_formatDefault = (function(x, p) {
+  x = x.toPrecision(p);
+
+  out: for (var n = x.length, i = 1, i0 = -1, i1; i < n; ++i) {
+    switch (x[i]) {
+      case ".": i0 = i1 = i; break;
+      case "0": if (i0 === 0) i0 = i; i1 = i; break;
+      case "e": break out;
+      default: if (i0 > 0) i0 = 0; break;
+    }
+  }
+
+  return i0 > 0 ? x.slice(0, i0) + x.slice(i1 + 1) : x;
+});
+
+// CONCATENATED MODULE: ./node_modules/d3-scale/node_modules/d3-format/src/formatPrefixAuto.js
+
+
+var formatPrefixAuto_prefixExponent;
+
+/* harmony default export */ var src_formatPrefixAuto = (function(x, p) {
+  var d = src_formatDecimal(x, p);
+  if (!d) return x + "";
+  var coefficient = d[0],
+      exponent = d[1],
+      i = exponent - (formatPrefixAuto_prefixExponent = Math.max(-8, Math.min(8, Math.floor(exponent / 3))) * 3) + 1,
+      n = coefficient.length;
+  return i === n ? coefficient
+      : i > n ? coefficient + new Array(i - n + 1).join("0")
+      : i > 0 ? coefficient.slice(0, i) + "." + coefficient.slice(i)
+      : "0." + new Array(1 - i).join("0") + src_formatDecimal(x, Math.max(0, p + i - 1))[0]; // less than 1y!
+});
+
+// CONCATENATED MODULE: ./node_modules/d3-scale/node_modules/d3-format/src/formatRounded.js
+
+
+/* harmony default export */ var src_formatRounded = (function(x, p) {
+  var d = src_formatDecimal(x, p);
+  if (!d) return x + "";
+  var coefficient = d[0],
+      exponent = d[1];
+  return exponent < 0 ? "0." + new Array(-exponent).join("0") + coefficient
+      : coefficient.length > exponent + 1 ? coefficient.slice(0, exponent + 1) + "." + coefficient.slice(exponent + 1)
+      : coefficient + new Array(exponent - coefficient.length + 2).join("0");
+});
+
+// CONCATENATED MODULE: ./node_modules/d3-scale/node_modules/d3-format/src/formatTypes.js
+
+
+
+
+/* harmony default export */ var src_formatTypes = ({
+  "": src_formatDefault,
+  "%": function(x, p) { return (x * 100).toFixed(p); },
+  "b": function(x) { return Math.round(x).toString(2); },
+  "c": function(x) { return x + ""; },
+  "d": function(x) { return Math.round(x).toString(10); },
+  "e": function(x, p) { return x.toExponential(p); },
+  "f": function(x, p) { return x.toFixed(p); },
+  "g": function(x, p) { return x.toPrecision(p); },
+  "o": function(x) { return Math.round(x).toString(8); },
+  "p": function(x, p) { return src_formatRounded(x * 100, p); },
+  "r": src_formatRounded,
+  "s": src_formatPrefixAuto,
+  "X": function(x) { return Math.round(x).toString(16).toUpperCase(); },
+  "x": function(x) { return Math.round(x).toString(16); }
+});
+
+// CONCATENATED MODULE: ./node_modules/d3-scale/node_modules/d3-format/src/formatSpecifier.js
+
+
+// [[fill]align][sign][symbol][0][width][,][.precision][type]
+var formatSpecifier_re = /^(?:(.)?([<>=^]))?([+\-\( ])?([$#])?(0)?(\d+)?(,)?(\.\d+)?([a-z%])?$/i;
+
+function formatSpecifier_formatSpecifier(specifier) {
+  return new formatSpecifier_FormatSpecifier(specifier);
+}
+
+formatSpecifier_formatSpecifier.prototype = formatSpecifier_FormatSpecifier.prototype; // instanceof
+
+function formatSpecifier_FormatSpecifier(specifier) {
+  if (!(match = formatSpecifier_re.exec(specifier))) throw new Error("invalid format: " + specifier);
+
+  var match,
+      fill = match[1] || " ",
+      align = match[2] || ">",
+      sign = match[3] || "-",
+      symbol = match[4] || "",
+      zero = !!match[5],
+      width = match[6] && +match[6],
+      comma = !!match[7],
+      precision = match[8] && +match[8].slice(1),
+      type = match[9] || "";
+
+  // The "n" type is an alias for ",g".
+  if (type === "n") comma = true, type = "g";
+
+  // Map invalid types to the default format.
+  else if (!src_formatTypes[type]) type = "";
+
+  // If zero fill is specified, padding goes after sign and before digits.
+  if (zero || (fill === "0" && align === "=")) zero = true, fill = "0", align = "=";
+
+  this.fill = fill;
+  this.align = align;
+  this.sign = sign;
+  this.symbol = symbol;
+  this.zero = zero;
+  this.width = width;
+  this.comma = comma;
+  this.precision = precision;
+  this.type = type;
+}
+
+formatSpecifier_FormatSpecifier.prototype.toString = function() {
+  return this.fill
+      + this.align
+      + this.sign
+      + this.symbol
+      + (this.zero ? "0" : "")
+      + (this.width == null ? "" : Math.max(1, this.width | 0))
+      + (this.comma ? "," : "")
+      + (this.precision == null ? "" : "." + Math.max(0, this.precision | 0))
+      + this.type;
+};
+
+// CONCATENATED MODULE: ./node_modules/d3-scale/node_modules/d3-format/src/identity.js
+/* harmony default export */ var node_modules_d3_format_src_identity = (function(x) {
+  return x;
+});
+
+// CONCATENATED MODULE: ./node_modules/d3-scale/node_modules/d3-format/src/locale.js
+
+
+
+
+
+
+
+
+var locale_prefixes = ["y","z","a","f","p","n","µ","m","","k","M","G","T","P","E","Z","Y"];
+
+/* harmony default export */ var d3_format_src_locale = (function(locale) {
+  var group = locale.grouping && locale.thousands ? src_formatGroup(locale.grouping, locale.thousands) : node_modules_d3_format_src_identity,
+      currency = locale.currency,
+      decimal = locale.decimal,
+      numerals = locale.numerals ? src_formatNumerals(locale.numerals) : node_modules_d3_format_src_identity,
+      percent = locale.percent || "%";
+
+  function newFormat(specifier) {
+    specifier = formatSpecifier_formatSpecifier(specifier);
+
+    var fill = specifier.fill,
+        align = specifier.align,
+        sign = specifier.sign,
+        symbol = specifier.symbol,
+        zero = specifier.zero,
+        width = specifier.width,
+        comma = specifier.comma,
+        precision = specifier.precision,
+        type = specifier.type;
+
+    // Compute the prefix and suffix.
+    // For SI-prefix, the suffix is lazily computed.
+    var prefix = symbol === "$" ? currency[0] : symbol === "#" && /[boxX]/.test(type) ? "0" + type.toLowerCase() : "",
+        suffix = symbol === "$" ? currency[1] : /[%p]/.test(type) ? percent : "";
+
+    // What format function should we use?
+    // Is this an integer type?
+    // Can this type generate exponential notation?
+    var formatType = src_formatTypes[type],
+        maybeSuffix = !type || /[defgprs%]/.test(type);
+
+    // Set the default precision if not specified,
+    // or clamp the specified precision to the supported range.
+    // For significant precision, it must be in [1, 21].
+    // For fixed precision, it must be in [0, 20].
+    precision = precision == null ? (type ? 6 : 12)
+        : /[gprs]/.test(type) ? Math.max(1, Math.min(21, precision))
+        : Math.max(0, Math.min(20, precision));
+
+    function format(value) {
+      var valuePrefix = prefix,
+          valueSuffix = suffix,
+          i, n, c;
+
+      if (type === "c") {
+        valueSuffix = formatType(value) + valueSuffix;
+        value = "";
+      } else {
+        value = +value;
+
+        // Perform the initial formatting.
+        var valueNegative = value < 0;
+        value = formatType(Math.abs(value), precision);
+
+        // If a negative value rounds to zero during formatting, treat as positive.
+        if (valueNegative && +value === 0) valueNegative = false;
+
+        // Compute the prefix and suffix.
+        valuePrefix = (valueNegative ? (sign === "(" ? sign : "-") : sign === "-" || sign === "(" ? "" : sign) + valuePrefix;
+        valueSuffix = (type === "s" ? locale_prefixes[8 + formatPrefixAuto_prefixExponent / 3] : "") + valueSuffix + (valueNegative && sign === "(" ? ")" : "");
+
+        // Break the formatted value into the integer “value” part that can be
+        // grouped, and fractional or exponential “suffix” part that is not.
+        if (maybeSuffix) {
+          i = -1, n = value.length;
+          while (++i < n) {
+            if (c = value.charCodeAt(i), 48 > c || c > 57) {
+              valueSuffix = (c === 46 ? decimal + value.slice(i + 1) : value.slice(i)) + valueSuffix;
+              value = value.slice(0, i);
+              break;
+            }
+          }
+        }
+      }
+
+      // If the fill character is not "0", grouping is applied before padding.
+      if (comma && !zero) value = group(value, Infinity);
+
+      // Compute the padding.
+      var length = valuePrefix.length + value.length + valueSuffix.length,
+          padding = length < width ? new Array(width - length + 1).join(fill) : "";
+
+      // If the fill character is "0", grouping is applied after padding.
+      if (comma && zero) value = group(padding + value, padding.length ? width - valueSuffix.length : Infinity), padding = "";
+
+      // Reconstruct the final output based on the desired alignment.
+      switch (align) {
+        case "<": value = valuePrefix + value + valueSuffix + padding; break;
+        case "=": value = valuePrefix + padding + value + valueSuffix; break;
+        case "^": value = padding.slice(0, length = padding.length >> 1) + valuePrefix + value + valueSuffix + padding.slice(length); break;
+        default: value = padding + valuePrefix + value + valueSuffix; break;
+      }
+
+      return numerals(value);
+    }
+
+    format.toString = function() {
+      return specifier + "";
+    };
+
+    return format;
+  }
+
+  function formatPrefix(specifier, value) {
+    var f = newFormat((specifier = formatSpecifier_formatSpecifier(specifier), specifier.type = "f", specifier)),
+        e = Math.max(-8, Math.min(8, Math.floor(d3_format_src_exponent(value) / 3))) * 3,
+        k = Math.pow(10, -e),
+        prefix = locale_prefixes[8 + e / 3];
+    return function(value) {
+      return f(k * value) + prefix;
+    };
+  }
+
+  return {
+    format: newFormat,
+    formatPrefix: formatPrefix
+  };
+});
+
+// CONCATENATED MODULE: ./node_modules/d3-scale/node_modules/d3-format/src/defaultLocale.js
+
+
+var src_defaultLocale_locale;
+var src_defaultLocale_format;
+var src_defaultLocale_formatPrefix;
+
+defaultLocale_defaultLocale({
+  decimal: ".",
+  thousands: ",",
+  grouping: [3],
+  currency: ["$", ""]
+});
+
+function defaultLocale_defaultLocale(definition) {
+  src_defaultLocale_locale = d3_format_src_locale(definition);
+  src_defaultLocale_format = src_defaultLocale_locale.format;
+  src_defaultLocale_formatPrefix = src_defaultLocale_locale.formatPrefix;
+  return src_defaultLocale_locale;
+}
+
+// CONCATENATED MODULE: ./node_modules/d3-scale/node_modules/d3-format/src/precisionFixed.js
+
+
+/* harmony default export */ var src_precisionFixed = (function(step) {
+  return Math.max(0, -d3_format_src_exponent(Math.abs(step)));
+});
+
+// CONCATENATED MODULE: ./node_modules/d3-scale/node_modules/d3-format/src/precisionPrefix.js
+
+
+/* harmony default export */ var src_precisionPrefix = (function(step, value) {
+  return Math.max(0, Math.max(-8, Math.min(8, Math.floor(d3_format_src_exponent(value) / 3))) * 3 - d3_format_src_exponent(Math.abs(step)));
+});
+
+// CONCATENATED MODULE: ./node_modules/d3-scale/node_modules/d3-format/src/precisionRound.js
+
+
+/* harmony default export */ var src_precisionRound = (function(step, max) {
+  step = Math.abs(step), max = Math.abs(max) - step;
+  return Math.max(0, d3_format_src_exponent(max) - d3_format_src_exponent(step)) + 1;
+});
+
+// CONCATENATED MODULE: ./node_modules/d3-scale/node_modules/d3-format/index.js
+
+
+
+
+
+
+
 // CONCATENATED MODULE: ./node_modules/d3-scale/src/tickFormat.js
 
 
@@ -13654,28 +14020,28 @@ function continuous(deinterpolate, reinterpolate) {
       stop = domain[domain.length - 1],
       step = tickStep(start, stop, count == null ? 10 : count),
       precision;
-  specifier = formatSpecifier(specifier == null ? ",f" : specifier);
+  specifier = formatSpecifier_formatSpecifier(specifier == null ? ",f" : specifier);
   switch (specifier.type) {
     case "s": {
       var value = Math.max(Math.abs(start), Math.abs(stop));
-      if (specifier.precision == null && !isNaN(precision = precisionPrefix(step, value))) specifier.precision = precision;
-      return defaultLocale_formatPrefix(specifier, value);
+      if (specifier.precision == null && !isNaN(precision = src_precisionPrefix(step, value))) specifier.precision = precision;
+      return src_defaultLocale_formatPrefix(specifier, value);
     }
     case "":
     case "e":
     case "g":
     case "p":
     case "r": {
-      if (specifier.precision == null && !isNaN(precision = precisionRound(step, Math.max(Math.abs(start), Math.abs(stop))))) specifier.precision = precision - (specifier.type === "e");
+      if (specifier.precision == null && !isNaN(precision = src_precisionRound(step, Math.max(Math.abs(start), Math.abs(stop))))) specifier.precision = precision - (specifier.type === "e");
       break;
     }
     case "f":
     case "%": {
-      if (specifier.precision == null && !isNaN(precision = precisionFixed(step))) specifier.precision = precision - (specifier.type === "%") * 2;
+      if (specifier.precision == null && !isNaN(precision = src_precisionFixed(step))) specifier.precision = precision - (specifier.type === "%") * 2;
       break;
     }
   }
-  return defaultLocale_format(specifier);
+  return src_defaultLocale_format(specifier);
 });
 
 // CONCATENATED MODULE: ./node_modules/d3-scale/src/linear.js
@@ -13899,7 +14265,7 @@ function log_log() {
 
   scale.tickFormat = function(count, specifier) {
     if (specifier == null) specifier = base === 10 ? ".0e" : ",";
-    if (typeof specifier !== "function") specifier = defaultLocale_format(specifier);
+    if (typeof specifier !== "function") specifier = src_defaultLocale_format(specifier);
     if (count === Infinity) return specifier;
     if (count == null) count = 10;
     var k = Math.max(1, base * count / scale.ticks().length); // TODO fast estimate?
@@ -15143,13 +15509,13 @@ function formatUnixTimestampSeconds(d) {
 // CONCATENATED MODULE: ./node_modules/d3-time-format/src/defaultLocale.js
 
 
-var src_defaultLocale_locale;
+var d3_time_format_src_defaultLocale_locale;
 var timeFormat;
 var timeParse;
 var utcFormat;
 var utcParse;
 
-defaultLocale_defaultLocale({
+src_defaultLocale_defaultLocale({
   dateTime: "%x, %X",
   date: "%-m/%-d/%Y",
   time: "%-I:%M:%S %p",
@@ -15160,13 +15526,13 @@ defaultLocale_defaultLocale({
   shortMonths: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 });
 
-function defaultLocale_defaultLocale(definition) {
-  src_defaultLocale_locale = formatLocale(definition);
-  timeFormat = src_defaultLocale_locale.format;
-  timeParse = src_defaultLocale_locale.parse;
-  utcFormat = src_defaultLocale_locale.utcFormat;
-  utcParse = src_defaultLocale_locale.utcParse;
-  return src_defaultLocale_locale;
+function src_defaultLocale_defaultLocale(definition) {
+  d3_time_format_src_defaultLocale_locale = formatLocale(definition);
+  timeFormat = d3_time_format_src_defaultLocale_locale.format;
+  timeParse = d3_time_format_src_defaultLocale_locale.parse;
+  utcFormat = d3_time_format_src_defaultLocale_locale.utcFormat;
+  utcParse = d3_time_format_src_defaultLocale_locale.utcParse;
+  return d3_time_format_src_defaultLocale_locale;
 }
 
 // CONCATENATED MODULE: ./node_modules/d3-time-format/src/isoFormat.js
@@ -19855,7 +20221,7 @@ function defaultConstrain(transform, extent, translateExtent) {
 /* unused concated harmony import null */
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, false, function() { return utcYears; });
 /* unused concated harmony import null */
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, false, function() { return defaultLocale_defaultLocale; });
+/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, false, function() { return src_defaultLocale_defaultLocale; });
 /* unused concated harmony import null */
 /* concated harmony reexport */__webpack_require__.d(__webpack_exports__, false, function() { return timeFormat; });
 /* unused concated harmony import null */

@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/alicoding/react-webpack-babel#readme",
   "peerDependencies": {
-    "react": "^15.5.4"
+    "react": "^16.2.0"
   },
   "dependencies": {
     "d3": "^4.12.2",
