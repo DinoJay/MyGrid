@@ -47,9 +47,9 @@ class Grid extends PureComponent {
   // // scrollTo = name => {
   //   this._scroller.scrollTo(name);
   // };
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return false;
-  // }
+  shouldComponentUpdate(nextProps, nextState) {
+    return false;
+  }
 
   render() {
     const {
@@ -129,7 +129,7 @@ Grid.defaultProps = {
   style: {}
 };
 
-class Item extends Component {
+class Item extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     selected: PropTypes.bool,
