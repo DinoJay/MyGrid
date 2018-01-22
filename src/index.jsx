@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Component} from 'react';
 // import ReactDOM from 'react-dom';
 import { range } from 'd3';
 import PropTypes from 'prop-types';
@@ -19,7 +19,7 @@ function getCol(i, n, span) {
   return cols[Math.floor(i / 2)]; // Math.floor(i / 2) + 1;
 }
 
-class Grid extends PureComponent {
+class Grid extends Component {
   static propTypes = {
     children: PropTypes.node,
     height: PropTypes.number,
@@ -47,7 +47,7 @@ class Grid extends PureComponent {
   // // scrollTo = name => {
   //   this._scroller.scrollTo(name);
   // };
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps) {
     return false;
   }
 

@@ -19034,8 +19034,8 @@ function getCol(i, n, span) {
   return cols[Math.floor(i / 2)]; // Math.floor(i / 2) + 1;
 }
 
-var src_Grid = function (_PureComponent) {
-  _inherits(Grid, _PureComponent);
+var src_Grid = function (_Component) {
+  _inherits(Grid, _Component);
 
   function Grid(props) {
     _classCallCheck(this, Grid);
@@ -19057,7 +19057,7 @@ var src_Grid = function (_PureComponent) {
 
   _createClass(Grid, [{
     key: 'shouldComponentUpdate',
-    value: function shouldComponentUpdate(nextProps, nextState) {
+    value: function shouldComponentUpdate(nextProps) {
       return false;
     }
   }, {
@@ -19122,7 +19122,7 @@ var src_Grid = function (_PureComponent) {
   }]);
 
   return Grid;
-}(react["PureComponent"]);
+}(react["Component"]);
 
 src_Grid.propTypes = {
   children: prop_types_default.a.node,
@@ -19159,8 +19159,8 @@ src_Grid.defaultProps = {
   style: {}
 };
 
-var src_Item = function (_PureComponent2) {
-  _inherits(Item, _PureComponent2);
+var src_Item = function (_PureComponent) {
+  _inherits(Item, _PureComponent);
 
   function Item() {
     _classCallCheck(this, Item);
