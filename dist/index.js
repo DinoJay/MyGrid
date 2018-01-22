@@ -169,8 +169,8 @@ function getCol(i, n, span) {
   return cols[Math.floor(i / 2)]; // Math.floor(i / 2) + 1;
 }
 
-var Grid = function (_Component) {
-  _inherits(Grid, _Component);
+var Grid = function (_PureComponent) {
+  _inherits(Grid, _PureComponent);
 
   function Grid(props) {
     _classCallCheck(this, Grid);
@@ -188,6 +188,9 @@ var Grid = function (_Component) {
   // // scrollTo = name => {
   //   this._scroller.scrollTo(name);
   // };
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return false;
+  // }
 
   _createClass(Grid, [{
     key: 'render',
@@ -256,7 +259,7 @@ var Grid = function (_Component) {
   }]);
 
   return Grid;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+}(__WEBPACK_IMPORTED_MODULE_0_react__["PureComponent"]);
 
 Grid.propTypes = {
   children: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.node,
@@ -293,8 +296,8 @@ Grid.defaultProps = {
   style: {}
 };
 
-var Item = function (_Component2) {
-  _inherits(Item, _Component2);
+var Item = function (_Component) {
+  _inherits(Item, _Component);
 
   function Item() {
     _classCallCheck(this, Item);
@@ -340,7 +343,7 @@ var Item = function (_Component2) {
   }]);
 
   return Item;
-}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+}(Component);
 
 Item.propTypes = {
   children: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.node,
