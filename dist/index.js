@@ -19058,7 +19058,7 @@ var src_Grid = function (_Component) {
   _createClass(Grid, [{
     key: 'shouldComponentUpdate',
     value: function shouldComponentUpdate(nextProps) {
-      return false;
+      return this.props.children.length !== nextProps.children.length;
     }
   }, {
     key: 'render',

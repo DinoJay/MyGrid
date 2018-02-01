@@ -1,4 +1,4 @@
-import React, { PureComponent, Component} from 'react';
+import React, { PureComponent, Component } from 'react';
 // import ReactDOM from 'react-dom';
 import { range } from 'd3';
 import PropTypes from 'prop-types';
@@ -48,7 +48,7 @@ class Grid extends Component {
   //   this._scroller.scrollTo(name);
   // };
   shouldComponentUpdate(nextProps) {
-    return false;
+    return this.props.children.length !== nextProps.children.length;
   }
 
   render() {
