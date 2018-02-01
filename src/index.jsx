@@ -19,7 +19,7 @@ function getCol(i, n, span) {
   return cols[Math.floor(i / 2)]; // Math.floor(i / 2) + 1;
 }
 
-class Grid extends Component {
+class Grid extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     height: PropTypes.number,
@@ -47,9 +47,14 @@ class Grid extends Component {
   // // scrollTo = name => {
   //   this._scroller.scrollTo(name);
   // };
-  shouldComponentUpdate(nextProps) {
-    return this.props.children.length !== nextProps.children.length;
-  }
+  // shouldComponentUpdate(nextProps) {
+  //   console.log('nextProps', nextProps);
+  //   return this.props.children.length !== nextProps.children.length;
+  // }
+  //
+  // shouldComponentUpdate(nextProps, nextState) {
+  //
+  // }
 
   render() {
     const {
@@ -66,6 +71,7 @@ class Grid extends Component {
       style
     } = this.props;
 
+    console.log('render');
     let gridTemplateColumns = null;
     if (cols !== null && colWidth !== null) {
       gridTemplateColumns = `repeat(${cols}, ${colWidth})`;

@@ -19034,8 +19034,8 @@ function getCol(i, n, span) {
   return cols[Math.floor(i / 2)]; // Math.floor(i / 2) + 1;
 }
 
-var src_Grid = function (_Component) {
-  _inherits(Grid, _Component);
+var src_Grid = function (_PureComponent) {
+  _inherits(Grid, _PureComponent);
 
   function Grid(props) {
     _classCallCheck(this, Grid);
@@ -19053,14 +19053,16 @@ var src_Grid = function (_Component) {
   // // scrollTo = name => {
   //   this._scroller.scrollTo(name);
   // };
-
+  // shouldComponentUpdate(nextProps) {
+  //   console.log('nextProps', nextProps);
+  //   return this.props.children.length !== nextProps.children.length;
+  // }
+  //
+  // shouldComponentUpdate(nextProps, nextState) {
+  //
+  // }
 
   _createClass(Grid, [{
-    key: 'shouldComponentUpdate',
-    value: function shouldComponentUpdate(nextProps) {
-      return this.props.children.length !== nextProps.children.length;
-    }
-  }, {
     key: 'render',
     value: function render() {
       var _props = this.props,
@@ -19077,6 +19079,7 @@ var src_Grid = function (_Component) {
           style = _props.style;
 
 
+      console.log('render');
       var gridTemplateColumns = null;
       if (cols !== null && colWidth !== null) {
         gridTemplateColumns = 'repeat(' + cols + ', ' + colWidth + ')';
@@ -19122,7 +19125,7 @@ var src_Grid = function (_Component) {
   }]);
 
   return Grid;
-}(react["Component"]);
+}(react["PureComponent"]);
 
 src_Grid.propTypes = {
   children: prop_types_default.a.node,
@@ -19159,8 +19162,8 @@ src_Grid.defaultProps = {
   style: {}
 };
 
-var src_Item = function (_PureComponent) {
-  _inherits(Item, _PureComponent);
+var src_Item = function (_PureComponent2) {
+  _inherits(Item, _PureComponent2);
 
   function Item() {
     _classCallCheck(this, Item);
