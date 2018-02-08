@@ -45,7 +45,7 @@ class App extends Component {
                 border: 'blue 1px solid'
               }}
               selected={selected === i}
-              rowSpan={selected === i ? 6 : 2}
+              rowSpan={selected === i ? 12 : 2}
             >
               {i}
             </div>

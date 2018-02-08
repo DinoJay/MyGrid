@@ -19007,8 +19007,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -19171,8 +19169,6 @@ var src_Item = function (_PureComponent2) {
   _createClass(Item, [{
     key: 'render',
     value: function render() {
-      var _extends2;
-
       var _props2 = this.props,
           children = _props2.children,
           index = _props2.index,
@@ -19184,9 +19180,11 @@ var src_Item = function (_PureComponent2) {
 
 
       var styleProps = {
-        style: _extends({}, children.props.style, (_extends2 = {
-          gridColumn: 'span ' + colSpan
-        }, _defineProperty(_extends2, 'gridColumn', selected ? col + ' / span ' + colSpan : 'span ' + colSpan), _defineProperty(_extends2, 'gridRow', selected ? row + ' / span ' + rowSpan : 'span ' + rowSpan), _extends2))
+        style: _extends({}, children.props.style, {
+          // gridColumn: `span ${colSpan}`,
+          gridColumn: selected ? col + ' / span ' + colSpan : 'span ' + colSpan,
+          gridRow: selected ? row + ' / span ' + rowSpan : 'span ' + rowSpan
+        })
       };
       return react_default.a.cloneElement(children, styleProps);
       // return (

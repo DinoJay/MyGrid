@@ -161,7 +161,7 @@ class Item extends PureComponent {
     const styleProps = {
       style: {
         ...children.props.style,
-        gridColumn: `span ${colSpan}`,
+        // gridColumn: `span ${colSpan}`,
         gridColumn: selected ? `${col} / span ${colSpan}` : `span ${colSpan}`,
         gridRow: selected ? `${row} / span ${rowSpan}` : `span ${rowSpan}`
       }
