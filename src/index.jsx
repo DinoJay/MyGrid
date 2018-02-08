@@ -94,6 +94,7 @@ class Grid extends PureComponent {
           gridTemplateRows,
           gridTemplateColumns,
           gridGap: `${gap}%`,
+          // gridAutoFlow: 'column dense',
           ...style
         }}
       >
@@ -147,11 +148,20 @@ class Item extends PureComponent {
   };
 
   render() {
-    const { children, selected, colSpan, rowSpan, col, row } = this.props;
+    const {
+      children,
+      index,
+      selected,
+      colSpan,
+      rowSpan,
+      col,
+      row
+    } = this.props;
 
     const styleProps = {
       style: {
         ...children.props.style,
+        gridColumn: `span ${colSpan}`,
         gridColumn: selected ? `${col} / span ${colSpan}` : `span ${colSpan}`,
         gridRow: selected ? `${row} / span ${rowSpan}` : `span ${rowSpan}`
       }

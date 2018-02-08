@@ -32,15 +32,22 @@ class App extends Component {
   render() {
     const { data, selected } = this.state;
     return (
-      <div style={{ border: '1px green solid', width: '100%' }}>
-        <Grid cols={4} colSpan={2} rows={20} gap={0}>
+      <div
+        style={{ border: '1px green solid', width: '100%', height: '2000px' }}
+      >
+        <Grid cols={1} rows={data.length * 3} gap={0}>
           {data.map((d, i) => (
             <div
-              style={{ border: 'blue 1px solid' }}
+              onClick={() => this.extData(i)}
+              style={{
+                height: '100%',
+                width: '100%',
+                border: 'blue 1px solid'
+              }}
               selected={selected === i}
-              colSpan={selected === i ? 4 : 2}
+              rowSpan={selected === i ? 6 : 2}
             >
-              <button onClick={() => this.extData(i)}>{d}</button>
+              {i}
             </div>
           ))}
         </Grid>
@@ -49,6 +56,6 @@ class App extends Component {
   }
 }
 
-App.defaultProps = { data: d3.range(0, 10) };
+App.defaultProps = { data: d3.range(0, 20) };
 
 export default App;
