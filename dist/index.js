@@ -19067,8 +19067,6 @@ var src_Grid = function (_PureComponent) {
     value: function render() {
       var _props = this.props,
           children = _props.children,
-          selectedColSpan = _props.selectedColSpan,
-          selectedRowSpan = _props.selectedRowSpan,
           colWidth = _props.colWidth,
           rowHeight = _props.rowHeight,
           cols = _props.cols,
@@ -19079,7 +19077,6 @@ var src_Grid = function (_PureComponent) {
           style = _props.style;
 
 
-      console.log('render');
       var gridTemplateColumns = null;
       if (cols !== null && colWidth !== null) {
         gridTemplateColumns = 'repeat(' + cols + ', ' + colWidth + ')';
@@ -19105,6 +19102,7 @@ var src_Grid = function (_PureComponent) {
         },
         react_default.a.Children.map(children, function (comp, i) {
           var col = getCol(i, children.length, colSpan); // Math.floor(i / 2) + 1;
+          var row = getCol(i, children.length, rowSpan); // Math.floor(i / 2) + 1;
           var _comp$props = comp.props,
               cspan = _comp$props.colSpan,
               rspan = _comp$props.rowSpan,
@@ -19112,11 +19110,11 @@ var src_Grid = function (_PureComponent) {
 
           var props = {
             colSpan: cspan || colSpan,
-            rowSpan: rspan || colSpan
+            rowSpan: rspan || rowSpan
           };
           return react_default.a.createElement(
             src_Item,
-            _extends({}, props, { index: i, col: selected ? col : null }),
+            _extends({}, props, { index: i, col: col, row: row }),
             comp
           );
         })
@@ -19130,20 +19128,19 @@ var src_Grid = function (_PureComponent) {
 src_Grid.propTypes = {
   children: prop_types_default.a.node,
   height: prop_types_default.a.number,
-  clickHandler: prop_types_default.a.function,
+  clickHandler: prop_types_default.a.func,
   span: prop_types_default.a.number,
-  selectedColSpan: prop_types_default.a.number,
   colWidth: prop_types_default.a.number,
-  selected: prop_types_default.a.string,
+  fix: prop_types_default.a.number,
   style: prop_types_default.a.object
 };
 src_Grid.defaultProps = { selected: null };
 
 
 src_Grid.defaultProps = {
+  colSpan: 1,
+  rowSpan: 1,
   data: [],
-  id: '0',
-  height: 100,
   children: function children() {
     return react_default.a.createElement(
       'div',
@@ -19152,8 +19149,6 @@ src_Grid.defaultProps = {
     );
   },
   span: 1,
-  selectedColSpan: 2,
-  selctedRowSpan: 2,
   colWidth: null,
   colHeight: null,
   cols: null,
@@ -19176,16 +19171,17 @@ var src_Item = function (_PureComponent2) {
     value: function render() {
       var _props2 = this.props,
           children = _props2.children,
-          opacity = _props2.opacity,
+          selected = _props2.selected,
           colSpan = _props2.colSpan,
           rowSpan = _props2.rowSpan,
-          col = _props2.col;
+          col = _props2.col,
+          row = _props2.row;
 
 
       var styleProps = {
         style: _extends({}, children.props.style, {
-          gridColumn: col ? col + ' / span ' + colSpan : 'span ' + colSpan,
-          gridRowEnd: 'span ' + rowSpan
+          gridColumn: selected ? col + ' / span ' + colSpan : 'span ' + colSpan,
+          gridRow: selected ? row + ' / span ' + rowSpan : 'span ' + rowSpan
         })
       };
       return react_default.a.cloneElement(children, styleProps);
@@ -19209,11 +19205,12 @@ var src_Item = function (_PureComponent2) {
 src_Item.propTypes = {
   children: prop_types_default.a.node,
   selected: prop_types_default.a.bool,
-  col: prop_types_default.a.number,
   rowSpan: prop_types_default.a.number,
   colSpan: prop_types_default.a.number,
   opacity: prop_types_default.a.number,
-  clickHandler: prop_types_default.a.func
+  clickHandler: prop_types_default.a.func,
+  col: prop_types_default.a.oneOf([prop_types_default.a.number, null]),
+  row: prop_types_default.a.oneOf([prop_types_default.a.number, null])
 };
 src_Item.defaultProps = {
   clickHandler: function clickHandler(d) {

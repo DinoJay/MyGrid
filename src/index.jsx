@@ -23,11 +23,10 @@ class Grid extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     height: PropTypes.number,
-    clickHandler: PropTypes.function,
+    clickHandler: PropTypes.func,
     span: PropTypes.number,
-    selectedColSpan: PropTypes.number,
     colWidth: PropTypes.number,
-    selected: PropTypes.string,
+    fix: PropTypes.number,
     style: PropTypes.object
   };
 
@@ -59,8 +58,6 @@ class Grid extends PureComponent {
   render() {
     const {
       children,
-      selectedColSpan,
-      selectedRowSpan,
       colWidth,
       rowHeight,
       cols,
@@ -71,7 +68,6 @@ class Grid extends PureComponent {
       style
     } = this.props;
 
-    console.log('render');
     let gridTemplateColumns = null;
     if (cols !== null && colWidth !== null) {
       gridTemplateColumns = `repeat(${cols}, ${colWidth})`;
@@ -103,13 +99,14 @@ class Grid extends PureComponent {
       >
         {React.Children.map(children, (comp, i) => {
           const col = getCol(i, children.length, colSpan); // Math.floor(i / 2) + 1;
+          const row = getCol(i, children.length, rowSpan); // Math.floor(i / 2) + 1;
           const { colSpan: cspan, rowSpan: rspan, selected } = comp.props;
           const props = {
             colSpan: cspan || colSpan,
-            rowSpan: rspan || colSpan
+            rowSpan: rspan || rowSpan
           };
           return (
-            <Item {...props} index={i} col={selected ? col : null}>
+            <Item {...props} index={i} col={col} row={row}>
               {comp}
             </Item>
           );
@@ -120,13 +117,11 @@ class Grid extends PureComponent {
 }
 
 Grid.defaultProps = {
+  colSpan: 1,
+  rowSpan: 1,
   data: [],
-  id: '0',
-  height: 100,
   children: () => <div>test</div>,
   span: 1,
-  selectedColSpan: 2,
-  selctedRowSpan: 2,
   colWidth: null,
   colHeight: null,
   cols: null,
@@ -139,11 +134,12 @@ class Item extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     selected: PropTypes.bool,
-    col: PropTypes.number,
     rowSpan: PropTypes.number,
     colSpan: PropTypes.number,
     opacity: PropTypes.number,
-    clickHandler: PropTypes.func
+    clickHandler: PropTypes.func,
+    col: PropTypes.oneOf([PropTypes.number, null]),
+    row: PropTypes.oneOf([PropTypes.number, null])
   };
 
   static defaultProps = {
@@ -151,21 +147,13 @@ class Item extends PureComponent {
   };
 
   render() {
-    const {
-      children,
-      opacity,
-      colSpan,
-      rowSpan,
-      col
-      // clickHandler,
-      // selected
-    } = this.props;
+    const { children, selected, colSpan, rowSpan, col, row } = this.props;
 
     const styleProps = {
       style: {
         ...children.props.style,
-        gridColumn: col ? `${col} / span ${colSpan}` : `span ${colSpan}`,
-        gridRowEnd: `span ${rowSpan}`
+        gridColumn: selected ? `${col} / span ${colSpan}` : `span ${colSpan}`,
+        gridRow: selected ? `${row} / span ${rowSpan}` : `span ${rowSpan}`
       }
     };
     return React.cloneElement(children, styleProps);

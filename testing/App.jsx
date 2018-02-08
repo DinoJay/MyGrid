@@ -8,29 +8,39 @@ import Grid from '../src';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { ...props };
+    this.state = { ...props, selected: null };
   }
 
   componentDidUpdate() {
     console.log('componentDidUpdate');
   }
+  updData() {
+    this.setState(oldState => ({
+      data: d3.range(0, oldState.data.length + 1)
+    }));
+  }
+  extData(i) {
+    console.log('extData');
+    this.setState(({ selected }) => {
+      console.log('selected', selected);
+      return {
+        selected: selected === null ? i : null
+      };
+    });
+  }
 
   render() {
-    const { data } = this.state;
+    const { data, selected } = this.state;
     return (
       <div style={{ border: '1px green solid', width: '100%' }}>
         <Grid cols={4} colSpan={2} rows={20} gap={0}>
-          {data.map(d => (
-            <div style={{ border: 'blue 1px solid' }}>
-              <button
-                onClick={() =>
-                  this.setState(oldState => ({
-                    data: d3.range(0, oldState.data.length + 1)
-                  }))
-                }
-              >
-                {d}
-              </button>
+          {data.map((d, i) => (
+            <div
+              style={{ border: 'blue 1px solid' }}
+              selected={selected === i}
+              colSpan={selected === i ? 4 : 2}
+            >
+              <button onClick={() => this.extData(i)}>{d}</button>
             </div>
           ))}
         </Grid>
