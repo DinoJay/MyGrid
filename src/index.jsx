@@ -19,7 +19,7 @@ function getCol(i, n, span) {
   return cols[Math.floor(i / 2)]; // Math.floor(i / 2) + 1;
 }
 
-class Grid extends Component {
+class Grid extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     height: PropTypes.number,
